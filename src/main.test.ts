@@ -1,4 +1,5 @@
 import {
+  afterAll,
   Application,
   beforeAll,
   chai,
@@ -6,7 +7,7 @@ import {
   it,
   superoak,
 } from "../deps.ts";
-import { setupApp } from "./core/app.ts";
+import { setupApp, stopApp } from "./core/app.ts";
 
 export function add(a: number, b: number): number {
   return a + b;
@@ -14,10 +15,18 @@ export function add(a: number, b: number): number {
 
 chai.should();
 
-describe("main", () => {
+describe("main", {
+  // // apparently edgedb is leaking ops and superoak is not closing the server
+  sanitizeResources: false,
+  sanitizeOps: false,
+}, () => {
   let app: Application;
-  beforeAll(() => {
-    app = setupApp();
+  beforeAll(async () => {
+    app = await setupApp();
+  });
+
+  afterAll(async () => {
+    await stopApp();
   });
 
   it("root should return 200", async () => {
@@ -33,6 +42,6 @@ describe("main", () => {
     const res = await req.get("/accounts");
 
     res.status.should.equal(200);
-    res.body.should.deep.equal({ message: "Hello accounts!" });
+    res.body.should.deep.equal({ accounts: [] });
   });
 });

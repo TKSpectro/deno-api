@@ -34,5 +34,6 @@ jobs:
       - name: Lint
         run: deno lint
 
+      - uses: edgedb/setup-edgedb@v1
       - name: Test
         run: deno test --allow-all
