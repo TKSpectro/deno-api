@@ -1,25 +1,20 @@
-import express from "npm:express@4.18.2";
-import { Request, Response } from "../../deps.ts";
+import { Application, Router } from "../../deps.ts";
 import { setupLogger } from "./logger.ts";
 import { requestLogger } from "./middlewares/requestLogger.ts";
 
 export const setupApp = () => {
-  const app = express();
+  const app = new Application();
   setupLogger();
 
   app.use(requestLogger);
 
-  // const router = new Router();
-  // router
-  //   .get("/", ({ response }) => {
-  //     response.body = "Hello world!";
-  //   });
+  const router = new Router();
+  router
+    .get("/", ({ response }) => {
+      response.body = { message: "Hello world!" };
+    });
 
-  // app.use(router.routes());
-
-  app.get("/", (_req: Request, res: Response) => {
-    res.send({ message: "Hello world!" });
-  });
+  app.use(router.routes());
 
   return app;
 };

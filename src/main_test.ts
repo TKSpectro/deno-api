@@ -1,4 +1,11 @@
-import { Application, beforeAll, chai, describe, it } from "../deps.ts";
+import {
+  Application,
+  beforeAll,
+  chai,
+  describe,
+  it,
+  superoak,
+} from "../deps.ts";
 import { setupApp } from "./core/app.ts";
 
 export function add(a: number, b: number): number {
@@ -7,17 +14,17 @@ export function add(a: number, b: number): number {
 
 chai.should();
 
-describe("add", () => {
+describe("GET root", () => {
   let app: Application;
   beforeAll(() => {
-    console.log("beforeAll");
-
     app = setupApp();
   });
 
-  it("should add two numbers", async () => {
-    // await superagent(app)
-    //   .get("/")
-    //   .expect(200);
+  it("should return 200", async () => {
+    const req = await superoak(app);
+    const res = await req.get("/");
+
+    res.status.should.equal(200);
+    res.body.should.deep.equal({ message: "Hello world!" });
   });
 });
