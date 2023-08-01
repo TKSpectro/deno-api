@@ -9,5 +9,8 @@
   },
   "fmt": {
     "exclude": ["deno_cache/"]
+  },
+  "test": {
+    "exclude": ["deno_cache/"]
   }
 }
