@@ -5,13 +5,13 @@
     "cache": "deno cache --reload --lock=deno.lock --lock-write deps.ts"
   },
   "lint": {
-    "exclude": ["deno_cache/"]
+    "exclude": ["deno_cache/", "dbschema/"]
   },
   "fmt": {
-    "exclude": ["deno_cache/"]
+    "exclude": ["deno_cache/", "dbschema/"]
   },
   "test": {
-    "exclude": ["deno_cache/"]
+    "exclude": ["deno_cache/", "dbschema/"]
   },
   // Import map for edgeDB. See: https://github.com/edgedb/edgedb-deno#prerequisites
   "importMap": "./dbschema/importMap.json"
