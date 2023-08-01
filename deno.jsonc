@@ -1,5 +1,6 @@
 {
   "tasks": {
-    "dev": "deno run --watch main.ts"
+    "dev": "deno run --watch main.ts",
+    "cache": "deno cache --reload --lock=deno.lock --lock-write deps.ts"
   }
 }
