@@ -1,7 +1,7 @@
 {
   "tasks": {
-    "start": "deno run --allow-read --allow-write --allow-env --allow-net main.ts",
-    "dev": "deno run --allow-read --allow-write --allow-env --allow-net --watch main.ts",
+    "start": "deno run --allow-read --allow-write --allow-env --allow-net ./src/main.ts",
+    "dev": "deno run --allow-read --allow-write --allow-env --allow-net --watch ./src/main.ts",
     "cache": "deno cache --reload --lock=deno.lock --lock-write deps.ts"
   },
   "lint": {

@@ -4,12 +4,15 @@ export const setupLogger = () => {
   logger.setup({
     handlers: {
       console: new logger.handlers.ConsoleHandler("DEBUG", {
+        // formatter: (rec) =>
+        //   JSON.stringify({
+        //     ts: rec.datetime,
+        //     level: rec.levelName,
+        //     data: rec.msg,
+        //   }),
+        // formatter: "{datetime} {levelName} {msg}",
         formatter: (rec) =>
-          JSON.stringify({
-            ts: rec.datetime,
-            level: rec.levelName,
-            data: rec.msg,
-          }),
+          `${rec.datetime.toISOString()} ${rec.levelName} ${rec.msg}`,
       }),
       // Could also use a rotating file handler
       // file: new logger.handlers.RotatingFileHandler("INFO", {
