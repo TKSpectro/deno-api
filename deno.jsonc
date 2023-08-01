@@ -2,7 +2,8 @@
   "tasks": {
     "start": "deno run --allow-run --allow-read --allow-write --allow-env --allow-net ./src/main.ts",
     "dev": "deno run --allow-run --allow-read --allow-write --allow-env --allow-net --watch ./src/main.ts",
-    "cache": "deno cache --reload --lock=deno.lock --lock-write deps.ts"
+    "cache": "deno cache --reload --lock=deno.lock --lock-write deps.ts",
+    "edgedb-gen": "deno run --allow-all --unstable https://deno.land/x/edgedb/generate.ts edgeql-js && deno run --allow-all --unstable https://deno.land/x/edgedb/generate.ts interfaces && deno run --allow-all --unstable https://deno.land/x/edgedb/generate.ts queries"
   },
   "lint": {
     "exclude": ["deno_cache/", "dbschema/"]

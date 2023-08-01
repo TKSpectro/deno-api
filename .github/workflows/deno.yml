@@ -35,5 +35,7 @@ jobs:
         run: deno lint
 
       - uses: edgedb/setup-edgedb@v1
+      - name: Generate edgedb stuff
+        run: deno task edgedb-gen 
       - name: Test
         run: deno test --allow-all
