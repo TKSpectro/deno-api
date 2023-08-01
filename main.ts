@@ -1,8 +1,20 @@
-export function add(a: number, b: number): number {
-  return a + b;
-}
+import { Application, Router } from "./deps.ts";
+import { APP_PORT } from "./src/core/config.ts";
+import { setupLogger } from "./src/core/logger.ts";
+import { requestLogger } from "./src/core/middlewares/requestLogger.ts";
 
-// Learn more at https://deno.land/manual/examples/module_metadata#concepts
-if (import.meta.main) {
-  console.log("Add 2 + 3 =", add(2, 3));
-}
+setupLogger();
+
+const app = new Application();
+
+app.use(requestLogger);
+
+const router = new Router();
+router
+  .get("/", ({ response }) => {
+    response.body = "Hello world!";
+  });
+
+app.use(router.routes());
+
+await app.listen({ port: APP_PORT });
