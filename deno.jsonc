@@ -3,5 +3,11 @@
     "start": "deno run --allow-read --allow-write --allow-env --allow-net main.ts",
     "dev": "deno run --allow-read --allow-write --allow-env --allow-net --watch main.ts",
     "cache": "deno cache --reload --lock=deno.lock --lock-write deps.ts"
+  },
+  "lint": {
+    "exclude": ["deno_cache/"]
+  },
+  "fmt": {
+    "exclude": ["deno_cache/"]
   }
 }
