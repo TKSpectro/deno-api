@@ -1,6 +1,7 @@
-import { Application, Router } from "../../deps.ts";
+import { Application } from "../../deps.ts";
 import { setupLogger } from "./logger.ts";
 import { requestLogger } from "./middlewares/requestLogger.ts";
+import { appRouter } from "./router.ts";
 
 export const setupApp = () => {
   const app = new Application();
@@ -8,13 +9,7 @@ export const setupApp = () => {
 
   app.use(requestLogger);
 
-  const router = new Router();
-  router
-    .get("/", ({ response }) => {
-      response.body = { message: "Hello world!" };
-    });
-
-  app.use(router.routes());
+  app.use(appRouter.routes());
 
   return app;
 };

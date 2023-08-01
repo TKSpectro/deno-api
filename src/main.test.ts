@@ -14,17 +14,25 @@ export function add(a: number, b: number): number {
 
 chai.should();
 
-describe("GET root", () => {
+describe("main", () => {
   let app: Application;
   beforeAll(() => {
     app = setupApp();
   });
 
-  it("should return 200", async () => {
+  it("root should return 200", async () => {
     const req = await superoak(app);
     const res = await req.get("/");
 
     res.status.should.equal(200);
     res.body.should.deep.equal({ message: "Hello world!" });
+  });
+
+  it("accounts root should return 200", async () => {
+    const req = await superoak(app);
+    const res = await req.get("/accounts");
+
+    res.status.should.equal(200);
+    res.body.should.deep.equal({ message: "Hello accounts!" });
   });
 });
